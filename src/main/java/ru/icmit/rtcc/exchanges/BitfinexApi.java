@@ -8,23 +8,25 @@ import ru.icmit.rtcc.models.CurrencyPrice;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.LinkedList;
 import java.util.List;
 
 @Component
-public class CoinbaseApi extends ExchangeApi {
+public class BitfinexApi extends ExchangeApi {
+    private List<CurrencyPair> availablePairs = new LinkedList<>();
+
     @Override
     public String getName() {
-        return "Coinbase";
+        return "Bitfinex";
     }
 
     @Override
     public CurrencyPrice getCurrencyPrice(CurrencyPair pair) throws ExchangeApiException {
         try {
             String response = doGetRequest(pair.getCurrencyTicker(), pair.getBase(),
-                    "https://api.coinbase.com/v2/prices/%s-%s/buy");
+                    "https://api.bitfinex.com/v1/pubticker/%s%s");
             JSONObject jsonObject = new JSONObject(response);
-            JSONObject data = jsonObject.getJSONObject("data");
-            BigDecimal amount = data.getBigDecimal("amount");
+            BigDecimal amount = jsonObject.getBigDecimal("last_price");
             return new CurrencyPrice(amount, pair);
         } catch (IOException | JSONException e) {
             throw new ExchangeApiException();

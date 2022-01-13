@@ -8,6 +8,7 @@ import ru.icmit.rtcc.models.CurrencyPrice;
 
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Component
 public class KucoinApi extends ExchangeApi {
@@ -19,10 +20,15 @@ public class KucoinApi extends ExchangeApi {
             JSONObject jsonObject = new JSONObject(response);
             JSONObject data = jsonObject.getJSONObject("data");
             BigDecimal amount = data.getBigDecimal(pair.getCurrencyTicker());
-            return new CurrencyPrice(amount, pair, this);
-        } catch (IOException|JSONException e) {
+            return new CurrencyPrice(amount, pair);
+        } catch (IOException | JSONException e) {
             throw new ExchangeApiException();
         }
+    }
+
+    @Override
+    public List<CurrencyPrice> getCurrencyPrices() throws ExchangeApiException {
+        return null;
     }
 
     @Override

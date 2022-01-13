@@ -13,6 +13,11 @@ public class CurrencyPair {
         return currencyTicker;
     }
 
+    @Override
+    public String toString() {
+        return currencyTicker + base;
+    }
+
     public String getBase() {
         return base;
     }
@@ -25,5 +30,10 @@ public class CurrencyPair {
             return false;
 
         return currencyTicker.equals(( (CurrencyPair)o).currencyTicker ) && base.equals( ( (CurrencyPair)o).base );
+    }
+
+    @Override
+    public int hashCode() {
+        return currencyTicker.hashCode() * base.hashCode();
     }
 }

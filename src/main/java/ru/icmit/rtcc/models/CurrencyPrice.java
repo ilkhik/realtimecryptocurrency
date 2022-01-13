@@ -8,7 +8,7 @@ public class CurrencyPrice {
     private final CurrencyPair currencyPair;
     private BigDecimal amount;
 
-    public CurrencyPrice(BigDecimal amount, CurrencyPair currencyPair, ExchangeApi exchange) {
+    public CurrencyPrice(BigDecimal amount, CurrencyPair currencyPair) {
         this.currencyPair = currencyPair;
         this.amount = amount;
     }
@@ -23,5 +23,10 @@ public class CurrencyPrice {
 
     public CurrencyPair getCurrencyPair() {
         return currencyPair;
+    }
+
+    @Override
+    public String toString() {
+        return amount.toString();
     }
 }
