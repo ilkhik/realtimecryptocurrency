@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Realtime cryptocurrency</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/app.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-4 col-md-2">
+            <select id="currency" class="form-select">
+                <option value="BTC">BTC</option>
+                <option value="ETH">ETH</option>
+                <option value="ADA">ADA</option>
+                <option value="USDT">USDT</option>
+            </select>
+        </div>
+        <div class="col-4 col-md-2">
+            <select id="base" class="form-select">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="RUB">RUB</option>
+            </select>
+        </div>
+    </div>
+    <br>
+
+    <table id="price-table" class="table table-bordered table-hover" style="max-width: 696px">
+        <thead style="cursor: pointer">
+        <tr>
+            <th scope="col" id="exchange-column">Exchange<span id="exchange-sort-triangle">&#x25B2;</span></th>            
+            <th scope="col" id="price-column">Price<span id="price-sort-triangle"></span></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr id="price-row-template" style="display: none">
+            <td class="price-row-exchange"></td>
+            <td class="price-row-price"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+</body>
+</html>
